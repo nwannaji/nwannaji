@@ -1,5 +1,6 @@
 import sys
 from django.utils.timezone import now
+from django.utils.translation import gettext_lazy as _
 try:
     from django.db import models
 except Exception:
@@ -17,7 +18,7 @@ class Instructor(models.Model):
         on_delete=models.CASCADE,
     )
     full_time = models.BooleanField(default=True)
-    total_learners = models.IntegerField()
+    total_learners = models.IntegerField(default=0)
 
     def __str__(self):
         return self.user.username
@@ -57,7 +58,7 @@ class Course(models.Model):
     name = models.CharField(null=False, max_length=30, default='online course')
     image = models.ImageField(upload_to='course_images/')
     description = models.CharField(max_length=1000)
-    pub_date = models.DateField(null=True)
+    pub_date = models.DateField(auto_now=True)
     instructors = models.ManyToManyField(Instructor)
     users = models.ManyToManyField(settings.AUTH_USER_MODEL, through='Enrollment')
     total_enrollment = models.IntegerField(default=0)
@@ -73,7 +74,7 @@ class Lesson(models.Model):
     title = models.CharField(max_length=200, default="title")
     order = models.IntegerField(default=0)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
-    content = models.TextField()
+    content = models.TextField(blank= True)
 
 
 # Enrollment model
@@ -90,7 +91,7 @@ class Enrollment(models.Model):
     ]
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
-    date_enrolled = models.DateField(default=now)
+    date_enrolled = models.DateField(auto_now=True)
     mode = models.CharField(max_length=5, choices=COURSE_MODES, default=AUDIT)
     rating = models.FloatField(default=5.0)
 
@@ -106,14 +107,26 @@ class Enrollment(models.Model):
     # question text
     # question grade/mark
 
+class Question(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='questions')
+    grade_point = models.DecimalField(max_digits=5, decimal_places=2)
+    content = models.TextField()
+
+    def __str__(self):
+        return self.content
+
+    def get_absolute_url(self):
+        return reverse('question_detail', args=[str(self.id)])
+
+
     # <HINT> A sample model method to calculate if learner get the score of the question
-    #def is_get_score(self, selected_ids):
-    #    all_answers = self.choice_set.filter(is_correct=True).count()
-    #    selected_correct = self.choice_set.filter(is_correct=True, id__in=selected_ids).count()
-    #    if all_answers == selected_correct:
-    #        return True
-    #    else:
-    #        return False
+    def is_get_score(self, selected_ids):
+        all_answers = self.choice_set.filter(is_correct=True).count()
+        selected_correct = self.choice_set.filter(is_correct=True, id__in=selected_ids).count()
+        if all_answers == selected_correct:
+            return True
+        else:
+            return False
 
 
 #  <HINT> Create a Choice Model with:
@@ -124,11 +137,31 @@ class Enrollment(models.Model):
     # Other fields and methods you would like to design
 # class Choice(models.Model):
 
+class Choice(models.Model):
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    content = models.CharField(max_length=200)
+    is_correct = models.BooleanField(default=False, verbose_name=_('Correct'))
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = _('Choice')
+        verbose_name_plural = _('Choices')
+        ordering = ['-updated_at']
+
+    def __str__(self):
+        return self.content
+
+
 # <HINT> The submission model
 # One enrollment could have multiple submission
 # One submission could have multiple choices
 # One choice could belong to multiple submissions
-#class Submission(models.Model):
-#    enrollment = models.ForeignKey(Enrollment, on_delete=models.CASCADE)
-#    choices = models.ManyToManyField(Choice)
-#    Other fields and methods you would like to design
+
+class Submission(models.Model):
+    id = id = models.AutoField(primary_key=True)
+    enrollment = models.ForeignKey(Enrollment, on_delete=models.CASCADE, related_name='submissions')
+    choices = models.ManyToManyField(Choice, related_name='submissions', blank=True)
+
+    def __str__(self):
+        return f'Submission #{self.id} for {self.enrollment.student} in {self.enrollment.course}'
