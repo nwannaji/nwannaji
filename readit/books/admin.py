@@ -12,7 +12,7 @@ class BookAdmin(admin.ModelAdmin):
     def display_authors(self, obj):
         return obj.list_authors()
 
-    display_authors.short_description = "Book Authors"
+    display_authors.short_description = "(Author(s))"
 
 admin.site.register(Book, BookAdmin)
 admin.site.register(Author)
