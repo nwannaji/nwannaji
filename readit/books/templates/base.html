@@ -1,0 +1,40 @@
+ {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="My books review site!">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/fontawesome.css' %}">  
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="flex-container">
+        <header>
+            <img src="{% static 'img/logo.png' %}" alt="Readit!" class="logo"> 
+            <div class="Welcome">
+                {% if request.user.is_authenticated %}
+                <p>Hello {{request.user.username|title}}, you logged in last {{request.user.last_login|date:"D d M Y"}}</p>
+                {% else %}
+                    <p><h3>Welcome Guest!</h3></p>
+                {% endif %}
+            </div>
+        </header>
+        <nav>
+             <a href="{% url 'books' %}">Books</a>
+             <a href="{% url 'authors' %}">Authors</a>
+        </nav>
+        <main>
+           {% block content %}
+
+           {% endblock %}
+        </main>
+
+        <footer>
+            <p>My Awesome books review sites!</p>
+        </footer>
+    </div>
+</body>
+</html>
