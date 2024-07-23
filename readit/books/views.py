@@ -1,6 +1,6 @@
 from django.db.models import Count
 from django.shortcuts import render
-from django.views import View
+from django.views.generic import View, DetailView
 from .models import Author, Book
 
 # Create your views here.
@@ -26,21 +26,11 @@ class AuthorList(View):
         }
         return render(request, 'authors.html',context)
     
-class BookDetails(View):
-    def get(self, request):
-
-        bookdetails = Book.objects.all()
-        context = {
-            'bookdetails':bookdetails
-        }
-        return render(request, 'book.html', context)
+class BookDetails(DetailView):
+    model = Book
+    template_name = 'book.html'
     
-class AuthorDetails(View):
-    def get (self, request):
-
-        authordetails = Author.objects.all()
-        context = {
-            'authordetails': authordetails
-        }
-        return render(request, 'authors.html', context)
     
+class AuthorDetails(DetailView):
+    model = Author
+    template_name = "authors.html"

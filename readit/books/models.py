@@ -25,3 +25,5 @@ class Book(models.Model):
             self.review_date = timezone.now()  # Corrected assignment operator
 
         super(Book, self).save(*args, **kwargs)
+
+

@@ -3,12 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Authors Page</title>
+    <title>An Author</title>
 </head>
 <body>
     {% for author in authors %}
-    <h3>{{author}}</h3>
+        <h2>{{ author.name }}</h2>
+        {% for book in author.books.all %}
+            {% if book.review %}
+                <div class="book">
+                    <h3>{{ book.title }}</h3>
+                    {% if book.is_favorite %} <p class="highlight">favorite</p>{% endif %}
+                    <p>{{ book.review|linebreaks }}</p>
+                </div>
+            {% endif %}
+        {% endfor %}
     {% endfor %}
-    
 </body>
 </html>
