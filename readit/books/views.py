@@ -9,7 +9,7 @@ def list_books(request):
     """
     List the books that have reviews
     """
-    books = Book.objects.exclude(review_date__isnull = True).prefetch_related('authors')
+    books = Book.objects.exclude(review_date__isnull = True).prefetch_related('author')
     context = {
         'books':books
     }

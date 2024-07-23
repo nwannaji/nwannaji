@@ -15,7 +15,7 @@
     {% endif %}
 
     <main>
-        <h1>{{books.count|apnumber|title }} boo{{ books.count|pluralize}}</h1>
+        <h1>{{books.count|apnumber|title }} book{{ books.count|pluralize}}</h1>
         {% for book in books %}
             <h2>{{book.title}} by {{book.list_authors}}</h2>
             {% if book.is_favorite %}
