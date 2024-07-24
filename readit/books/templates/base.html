@@ -5,26 +5,60 @@
     <meta charset="UTF-8">
     <meta name="description" content="My books review site!">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Books Review Site</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
     <link rel="stylesheet" href="{% static 'css/fontawesome.css' %}">  
     <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <style>
+        .img_logo,.logo{
+            display: flex;
+           align-items: center;
+           margin-right: 1px;
+           font-family: 'Tangerine', serif;
+           font-size: 48px;
+           font-style:normal;
+           color: blue;
+           text-shadow: 4px 4px 4px #aaa;
+        }
+        .usr{
+            text-align: right;
+            margin-right:10px;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 20px;
+            color:rgba(72, 34, 238, 0.747);
+            font-style: normal;
+        }
+        .no-login{
+            text-align: right;
+            margin-right:10px;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 20px;
+            color:rgba(243, 32, 85, 0.747);
+            font-style: normal;
+        }
+        .a,.b{
+            color: blue;
+        }
+
+      </style>
 </head>
 <body>
     <div class="flex-container">
         <header>
-            <img src="{% static 'img/logo.png' %}" alt="Readit!" class="logo"> 
+           <div class="img_logo"><img src="{% static 'img/logo.png' %}" alt="Readit!" class="logo"> <span>Beautiful Books Review Site</span></div>
             <div class="Welcome">
                 {% if request.user.is_authenticated %}
-                <p>Hello {{request.user.username|title}}, you logged in last {{request.user.last_login|date:"D d M Y"}}</p>
+                <p>Welcome <span class="usr">{{request.user.username|title}},</span> you logged in last {{request.user.last_login|date:"D d M Y"}}</p>
                 {% else %}
-                    <p><h3>Welcome Guest!</h3></p>
+                    <p><h3 class="no-login">Welcome Guest!</h3></p> 
                 {% endif %}
             </div>
         </header>
         <nav>
-             <a href="{% url 'books' %}">Books</a>
-             <a href="{% url 'authors' %}">Authors</a>
+             <a href="{% url 'books' %}" class="b">Books</a>
+             <a href="{% url 'authors' %}" class="a">Authors</a>
         </nav>
         <main>
            {% block content %}

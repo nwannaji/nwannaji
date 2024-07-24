@@ -28,9 +28,11 @@ class AuthorList(View):
     
 class BookDetails(DetailView):
     model = Book
+    pk_url_kwarg = 'pk'
     template_name = 'book.html'
     
     
 class AuthorDetails(DetailView):
     model = Author
+    pk_url_kwarg = 'pk'
     template_name = "authors.html"
