@@ -21,7 +21,7 @@ __pycache__/
 /django_Backend/artisans_backend/__pycache__/
 /django_Backend/**/migrations/
 !/django_Backend/**/migrations/__init__.py
-/django_Backend/.env
+/django_Backend/.env_artisans
 
 # ===================
 # Flutter: flutter-app/
