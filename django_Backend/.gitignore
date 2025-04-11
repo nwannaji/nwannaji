@@ -15,42 +15,42 @@ __pycache__/
 # ===================
 # Django: backend-django/
 # ===================
-/backend-django/db.sqlite3
-/backend-django/staticfiles/
-/backend-django/media/
-/backend-django/core/__pycache__/
-/backend-django/**/migrations/
-!/backend-django/**/migrations/__init__.py
-/backend-django/.env
+/django_Backend/db.sqlite3
+/django_Backend/staticfiles/
+/django_Backend/media/
+/django_Backend/artisans_backend/__pycache__/
+/django_Backend/**/migrations/
+!/django_Backend/**/migrations/__init__.py
+/django_Backend/.env
 
 # ===================
 # Flutter: flutter-app/
 # ===================
-/flutter-app/.dart_tool/
-/flutter-app/.flutter-plugins
-/flutter-app/.flutter-plugins-dependencies
-/flutter-app/.packages
-/flutter-app/.idea/
-/flutter-app/.vscode/
-/flutter-app/build/
-/flutter-app/.android/
-/flutter-app/.ios/
-/flutter-app/pubspec.lock
+/artisans_app/.dart_tool/
+/artisans_app/.flutter-plugins
+/artisans_app/.flutter-plugins-dependencies
+/artisans_app/.packages
+/artisans_app/.idea/
+/artisans_app/.vscode/
+/artisans_app/build/
+/artisans_app/.android/
+/artisans_app/.ios/
+/artisans_app/pubspec.lock
 
 # Flutter generated
-/flutter-app/generated_plugin_registrant.dart
+/artisans_app/generated_plugin_registrant.dart
 
 # Android Studio related
-/flutter-app/android/local.properties
+/artisans_app/android/local.properties
 
 # iOS specific
-/flutter-app/ios/Flutter/Flutter.framework
-/flutter-app/ios/Flutter/Flutter.podspec
-/flutter-app/ios/.symlinks/
-/flutter-app/ios/Pods/
-/flutter-app/ios/Runner.xcworkspace/
-/flutter-app/ios/Flutter/App.framework
+/artisans_app/ios/Flutter/Flutter.framework
+/artisans_app/ios/Flutter/Flutter.podspec
+/artisans_app/ios/.symlinks/
+/artisans_app/ios/Pods/
+/artisans_app/ios/Runner.xcworkspace/
+/artisans_app/ios/Flutter/App.framework
 
 # Google Services (if using Firebase)
-/flutter-app/android/app/google-services.json
-/flutter-app/ios/Runner/GoogleService-Info.plist
+/artisans_app/android/app/google-services.json
+/artisans_app/ios/Runner/GoogleService-Info.plist
