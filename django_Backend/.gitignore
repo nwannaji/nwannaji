@@ -1,0 +1,56 @@
+# ===================
+# Global Settings
+# ===================
+*.log
+*.pyc
+__pycache__/
+.DS_Store
+.env
+*.sqlite3
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# ===================
+# Django: backend-django/
+# ===================
+/backend-django/db.sqlite3
+/backend-django/staticfiles/
+/backend-django/media/
+/backend-django/core/__pycache__/
+/backend-django/**/migrations/
+!/backend-django/**/migrations/__init__.py
+/backend-django/.env
+
+# ===================
+# Flutter: flutter-app/
+# ===================
+/flutter-app/.dart_tool/
+/flutter-app/.flutter-plugins
+/flutter-app/.flutter-plugins-dependencies
+/flutter-app/.packages
+/flutter-app/.idea/
+/flutter-app/.vscode/
+/flutter-app/build/
+/flutter-app/.android/
+/flutter-app/.ios/
+/flutter-app/pubspec.lock
+
+# Flutter generated
+/flutter-app/generated_plugin_registrant.dart
+
+# Android Studio related
+/flutter-app/android/local.properties
+
+# iOS specific
+/flutter-app/ios/Flutter/Flutter.framework
+/flutter-app/ios/Flutter/Flutter.podspec
+/flutter-app/ios/.symlinks/
+/flutter-app/ios/Pods/
+/flutter-app/ios/Runner.xcworkspace/
+/flutter-app/ios/Flutter/App.framework
+
+# Google Services (if using Firebase)
+/flutter-app/android/app/google-services.json
+/flutter-app/ios/Runner/GoogleService-Info.plist
